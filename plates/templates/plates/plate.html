@@ -1,0 +1,22 @@
+{% load staticfiles %}
+
+<h1>Plate {{plate}}</h1>
+<a href="{% url 'plates:index' %}">Retour à la liste des plaques</a>
+	{% for image in plate.images %}
+	<ul>
+		<img src="{% static image.location %}" border="0" width={{plate.width}} height={{plate.height}} usemap="#wellmap">
+		<img src="{% static image.legend_location %}" width=533.3 height=133.3 border="0">
+	</ul>
+	{% empty %}
+	Pas de données pour cette plaque.
+	{% endfor %}
+
+<!-- Donc ça veut juste dire qu'on ne met pas les parenthèses : si je veux atteindre poll.choice_set.all() (code python) j'écris poll.choice_set.all dans le template html -->
+<a href="{% url 'plates:index' %}">Retour à la liste des plaques</a>
+
+<!-- Pour information on ne peut pas mettre la map dans un autre fichier car la plupart des browsers ne supportent pas l'import de maps -->
+<map name="wellmap">
+{% for a,b in map.iteritems %}	
+	<area shape="rect" coords="{{b.0}}, {{b.1}}, {{b.2}}, {{b.3}}" href="w{{a}}" />
+{% endfor %}
+</map>

@@ -1,0 +1,50 @@
+{% load staticfiles %}
+
+<h1>Well {{well_aim}}</h1>
+<h3><a href="{% url 'plates:plate' plate.id %}">Plate {{plate}}</a> </h3>
+
+{% if well %}
+<div id="details" style="clear:both">
+	<div id="condition" style="float:left; margin:10px">
+		Conditions:
+		<ul>
+			<li>Medium: {{condition.medium}}</li>
+			<li>Percentage of FCS: {{condition.serum}}</li>
+			<li>Cell clone: {{well.clone}}</li>
+			<li>Remarks: {{condition.other}}</li>
+		</ul>
+		</div>
+	<div id="treatment" style="float:left; margin:10px, clear:right">
+		Treatment:
+		<ul>
+			<li>Xenobiotic: <a href="http://wikipedia.fr/Resultats.php?q={{well.treatment.xb}}">{{well.treatment.xb}}</a></li>
+			<li>Dose: {{well.treatment.dose}}</li>
+		</ul>
+	</div>
+</div>
+<br>
+<div id="video" style="clear:left">
+<!-- TODO mettre la video sur la meme ligne que les conditions experimentales-->
+	{% for movie in well.movies%}
+		<div style = "float:left">
+<!--	Addition of controller and scale information enabled the videos to work on Chrome and Safari. With no details it works on Mozilla--> 
+				<embed src="{% static movie %}" width="800"  height="600" controller="True" scale="aspect" ></embed> 
+			
+			<br>		
+		</div>
+	{%endfor%}
+	</div>
+<div id="images" style="clear:both">
+	{% for image in well.images %}
+	<ul>
+		<img src="{% static image.location %}" border="0" width=500 height=350 style="float:left">
+	</ul>
+	{% endfor %}
+</div>
+	
+	<a href="{% url 'plates:plate' plate.id %}">Back to {{plate}}</a>
+	
+{% else %}
+	Il n'y a pas de données disponibles pour ce puits.
+	
+{%endif %}
