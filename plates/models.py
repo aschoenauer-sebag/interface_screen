@@ -30,16 +30,16 @@ class Plate(models.Model):
             return 466.7
         elif self.well_number()==48:
             return 600
+        elif self.well_number()==308:
+            return 560
         else:
             raise WellNumberDefError
         
     def width(self):
-        if self.well_number()==96:
-            return 800
-        elif self.well_number()==48:
-            return 800
+        if self.well_number()==308:
+            return 820 
         else:
-            raise WellNumberDefError
+            return 800
 
     def images(self, own_folder=True):
         #on veut une liste [{location:$location, legend_location:$legend_location}]
@@ -92,6 +92,9 @@ class Plate(models.Model):
         elif self.well_number()==48:
             x0=100; step_x = 77; 
             y0=60; step_y=80
+        elif self.well_number()==308:
+            x0=150; step_x=37.3
+            y0=70; step_y=40
         else:
             raise WellNumberDefError
             
