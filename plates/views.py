@@ -15,7 +15,7 @@ class IndexView(generic.ListView):
 
     def get_queryset(self):
         """Return all experiments."""
-        return Plate.objects.order_by('date').reverse()
+        return Plate.objects.order_by('date')
 
 class PlateView(generic.DetailView):
     model = Plate
