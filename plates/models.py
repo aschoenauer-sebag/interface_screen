@@ -165,9 +165,9 @@ class Well(models.Model):
         Video 2: raw images, channels H2B-mCherry and myrPalm-GFP
         Video 3: images H2B-mCherry with classification at the 1/1/2015 mitose classifier
         '''
-        names = ['P%s_W%s_1.avi'%(self.plate.cosydate(), self.num),'P%s_W%s_3.avi'%(self.plate.cosydate(), self.num)]
-        names.append('P%s_W%s_2.avi'%(self.plate.cosydate(), self.num)) 
         folder = "movies" if not own_plate_folder else os.path.join("movies", self.plate.cosydate())
+        
+        names = filter(lambda x: 'P%s_W%s'%(self.plate.cosydate(), self.num) in x, os.listdir(os.path.join(STATIC_ROOT, folder)))
         return [os.path.join(folder, name) for name in names]
     
 class WellNumberDefError(Exception):
