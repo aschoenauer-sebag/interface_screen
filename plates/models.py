@@ -31,13 +31,13 @@ class Plate(models.Model):
         elif self.well_number()==48:
             return 600
         elif self.well_number()==308:
-            return 560
+            return 700
         else:
             raise WellNumberDefError
         
     def width(self):
         if self.well_number()==308:
-            return 820 
+            return 1200 
         else:
             return 800
 
