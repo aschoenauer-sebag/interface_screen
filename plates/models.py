@@ -30,13 +30,13 @@ class Plate(models.Model):
             return 466.7
         elif self.well_number()==48:
             return 600
-        elif self.well_number()==308:
+        elif self.well_number()==384:
             return 700
         else:
             raise WellNumberDefError
         
     def width(self):
-        if self.well_number()==308:
+        if self.well_number()==384:
             return 1200 
         else:
             return 800
@@ -92,9 +92,9 @@ class Plate(models.Model):
         elif self.well_number()==48:
             x0=100; step_x = 77; 
             y0=60; step_y=80
-        elif self.well_number()==308:
-            x0=150; step_x=37.3
-            y0=70; step_y=40
+        elif self.well_number()==384:
+            x0=150; step_x=37.2
+            y0=70; step_y=35
         else:
             raise WellNumberDefError
             
