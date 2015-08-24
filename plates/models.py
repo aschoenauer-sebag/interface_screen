@@ -167,7 +167,7 @@ class Well(models.Model):
         '''
         folder = "movies" if not own_plate_folder else os.path.join("movies", self.plate.cosydate())
         
-        names = filter(lambda x: 'P%s_W%s'%(self.plate.cosydate(), self.num) in x, os.listdir(os.path.join(STATIC_ROOT, folder)))
+        names = filter(lambda x: 'P%s_W%s_'%(self.plate.cosydate(), self.num) in x, os.listdir(os.path.join(STATIC_ROOT, folder)))
         return [os.path.join(folder, name) for name in names]
     
 class WellNumberDefError(Exception):

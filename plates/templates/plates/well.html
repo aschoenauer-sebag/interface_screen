@@ -28,7 +28,7 @@
 	{% for movie in well.movies%}
 		<div style = "float:left">
 <!--	Addition of controller and scale information enabled the videos to work on Chrome and Safari. With no details it works on Mozilla--> 
-				<embed type="video/quicktime"  src="{% static movie %}" width="800"  height="600" controller="True" scale="aspect" ></embed> 
+				<embed src="{% static movie %}" width="800"  height="600" controller="True" scale="aspect" ></embed> 
 			
 			<br>		
 		</div>
